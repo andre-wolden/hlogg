@@ -20,3 +20,4 @@ type Msg
     | AddActivityWithIdOf Int
     | RecordAdded (Result Http.Error Model.Record)
     | DeleteRecord Int
+    | RecordDeleted (Result Http.Error Bool)

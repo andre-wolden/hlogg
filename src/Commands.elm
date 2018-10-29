@@ -88,9 +88,22 @@ sendNewRecord activity_id =
     Http.send RecordAdded (postRecord activity_id)
 
 
+deleteRecordRequest : Int -> Http.Request Bool
+deleteRecordRequest record_id =
+    Http.request
+        { method = "DELETE"
+        , headers = []
+        , url = baseUrl ++ "/records/delete/" ++ String.fromInt record_id
+        , body = Http.emptyBody
+        , expect = Http.expectJson Decode.bool
+        , timeout = Nothing
+        , withCredentials = False
+        }
+
+
 deleteRecord : Int -> Cmd Msg
-deleteRecord int =
-    Cmd.none
+deleteRecord record_id =
+    Http.send RecordDeleted (deleteRecordRequest record_id)
 
 
 

@@ -49,6 +49,12 @@ update message model =
         Messages.DeleteRecord recordId ->
             ( model, Commands.deleteRecord recordId )
 
+        Messages.RecordDeleted (Ok success) ->
+            ( model, Cmd.none )
+
+        Messages.RecordDeleted (Err error) ->
+            ( model, Cmd.none )
+
 
 
 -- END
