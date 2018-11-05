@@ -37,15 +37,16 @@ update message model =
                 | debugMessage = String.fromInt int
                 , addRecordBlockState = PlusSign
               }
-            , Commands.sendNewRecord int
+            , Commands.postNewRecord int
             )
 
-        Messages.RecordAdded (Ok activities) ->
+        Messages.RecordAdded (Ok record) ->
             ( model, Cmd.none )
 
         Messages.RecordAdded (Err error) ->
-            ( model, Cmd.none )
+            ( { model | debugMessage = "posting new record failed with error message: " ++ Debug.toString error }, Cmd.none )
 
+        -- TESTING
         Messages.DeleteRecord recordId ->
             ( model, Commands.deleteRecord recordId )
 

@@ -1,12 +1,4 @@
-module Commands exposing
-    ( decodeRecords
-    , deleteRecord
-    , executeGetActivities
-    , executeGetRecords
-    , getRecords
-    , postRecord
-    , sendNewRecord
-    )
+module Commands exposing (baseUrl, decodeActivities, decodeActivity, decodeRecord, decodeRecords, deleteRecord, deleteRecordRequest, getActivities, getActivitiesRequest, getRecords, getRecordsRequest, postNewRecord, postRecordBody, postRecordRequest)
 
 import Http
 import Json.Decode as Decode exposing (list, string)
@@ -21,8 +13,12 @@ baseUrl =
     "http://localhost:8080"
 
 
-getRecords : Http.Request Records
-getRecords =
+
+-- Record Commands
+
+
+getRecordsRequest : Http.Request Records
+getRecordsRequest =
     Http.get (baseUrl ++ "/records/all") decodeRecords
 
 
@@ -45,31 +41,9 @@ decodeRecord =
         )
 
 
-executeGetRecords : Cmd Msg
-executeGetRecords =
-    Http.send LoadRecords getRecords
-
-
-getActivities : Http.Request Activities
-getActivities =
-    Http.get (baseUrl ++ "/activities/all") decodeActivities
-
-
-decodeActivities : Decode.Decoder Activities
-decodeActivities =
-    Decode.list decodeActivity
-
-
-decodeActivity : Decode.Decoder Activity
-decodeActivity =
-    Decode.map2 Activity
-        (Decode.field "ActivityId" Decode.int)
-        (Decode.field "ActivityDescription" Decode.string)
-
-
-executeGetActivities : Cmd Msg
-executeGetActivities =
-    Http.send LoadActivities getActivities
+getRecords : Cmd Msg
+getRecords =
+    Http.send LoadRecords getRecordsRequest
 
 
 postRecordBody : Int -> Http.Body
@@ -78,14 +52,14 @@ postRecordBody activity_id =
         |> Http.jsonBody
 
 
-postRecord : Int -> Http.Request Record
-postRecord activity_id =
+postRecordRequest : Int -> Http.Request Record
+postRecordRequest activity_id =
     Http.post (baseUrl ++ "/records/new") (postRecordBody activity_id) decodeRecord
 
 
-sendNewRecord : Int -> Cmd Msg
-sendNewRecord activity_id =
-    Http.send RecordAdded (postRecord activity_id)
+postNewRecord : Int -> Cmd Msg
+postNewRecord activity_id =
+    Http.send RecordAdded (postRecordRequest activity_id)
 
 
 deleteRecordRequest : Int -> Http.Request Bool
@@ -104,6 +78,32 @@ deleteRecordRequest record_id =
 deleteRecord : Int -> Cmd Msg
 deleteRecord record_id =
     Http.send RecordDeleted (deleteRecordRequest record_id)
+
+
+
+-- Activity Commands
+
+
+getActivitiesRequest : Http.Request Activities
+getActivitiesRequest =
+    Http.get (baseUrl ++ "/activities/all") decodeActivities
+
+
+decodeActivities : Decode.Decoder Activities
+decodeActivities =
+    Decode.list decodeActivity
+
+
+decodeActivity : Decode.Decoder Activity
+decodeActivity =
+    Decode.map2 Activity
+        (Decode.field "ActivityId" Decode.int)
+        (Decode.field "ActivityDescription" Decode.string)
+
+
+getActivities : Cmd Msg
+getActivities =
+    Http.send LoadActivities getActivitiesRequest
 
 
 

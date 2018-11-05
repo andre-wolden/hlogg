@@ -34,14 +34,14 @@ main =
 
 
 init : Int -> ( Model, Cmd Msg )
-init counter =
-    ( { debugMessage = "init..."
+init flags =
+    ( { debugMessage = "Number, from index.js: " ++ Debug.toString flags
       , records = []
       , activities = []
       , addRecordBlockState = Model.PlusSign
       }
     , Cmd.batch
-        [ Commands.executeGetRecords
-        , Commands.executeGetActivities
+        [ Commands.getRecords
+        , Commands.getActivities
         ]
     )
