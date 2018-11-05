@@ -14,18 +14,20 @@ update message model =
         Messages.NoOp ->
             ( model, Cmd.none )
 
+        -- http stuff
         Messages.LoadRecords (Ok records) ->
             ( { model | records = records }, Cmd.none )
 
         Messages.LoadRecords (Err error) ->
-            ( model, Cmd.none )
+            ( { model | debugMessage = "loading all reacords failed with error: " ++ Debug.toString error }, Cmd.none )
 
         Messages.LoadActivities (Ok activities) ->
             ( { model | activities = activities }, Cmd.none )
 
         Messages.LoadActivities (Err error) ->
-            ( { model | debugMessage = Debug.toString error }, Cmd.none )
+            ( { model | debugMessage = "loading all activities failed with error: " ++ Debug.toString error }, Cmd.none )
 
+        -- Stuff on page
         Messages.ExpandAddRecordList ->
             ( { model | addRecordBlockState = ListOfActivities }, Cmd.none )
 
@@ -40,21 +42,21 @@ update message model =
             , Commands.postNewRecord int
             )
 
+        Messages.DeleteRecord recordId ->
+            ( model, Commands.deleteRecord recordId )
+
+        -- More http stuff
         Messages.RecordAdded (Ok record) ->
-            ( model, Cmd.none )
+            ( { model | records = (::) record model.records }, Cmd.none )
 
         Messages.RecordAdded (Err error) ->
             ( { model | debugMessage = "posting new record failed with error message: " ++ Debug.toString error }, Cmd.none )
-
-        -- TESTING
-        Messages.DeleteRecord recordId ->
-            ( model, Commands.deleteRecord recordId )
 
         Messages.RecordDeleted (Ok success) ->
             ( model, Cmd.none )
 
         Messages.RecordDeleted (Err error) ->
-            ( model, Cmd.none )
+            ( { model | debugMessage = "Was not able to delete record. Error: " ++ Debug.toString error }, Cmd.none )
 
 
 
