@@ -4,14 +4,14 @@ import Html exposing (Html, button, div, span, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Messages exposing (Msg)
-import Model exposing (Activities, Activity, AddRecordBlockState(..), Model, Record)
+import Model exposing (Activities, Activity, AddRecordBlockState(..), Model, Now, Record)
 
 
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
         [ div [ class "block" ] [ text "TITTEL" ]
-        , div [ class "block" ] [ text model.debugMessage ]
+        , div [ class "nowBlock" ] [ viewNow model.now ]
         , div [ class "block" ] (List.map viewRecord model.records)
         , div [ class "block" ] (List.map viewActivity model.activities)
         , div [ class "block" ]
@@ -22,15 +22,23 @@ view model =
             ]
         , div [ class "block" ]
             [ div [] [ text "Lagre Ny Aktivitet" ] ]
+        , div [ class "block" ] [ text model.debugMessage ]
         ]
 
 
 viewRecord : Record -> Html Msg
 viewRecord record =
-    div []
-        [ text "DATO: "
+    div [ class "record" ]
+        [ text "ID: "
+        , text (Debug.toString record.id)
+        , text " -- "
+        , text "DATO: "
         , text record.date
         , text " -- "
+        , text "Week: "
+        , text (Debug.toString record.week)
+        , text " -- "
+        , text "Activity: "
         , text record.activity.activityDescription
         , text " -- "
         , button [ onClick (Messages.DeleteRecord record.id) ] [ text "x" ]
@@ -62,6 +70,21 @@ addRecordBlock addRecordBlockState activities =
 addRecordBlockActivityElement : Activity -> Html Msg
 addRecordBlockActivityElement activity =
     button [ onClick (Messages.AddActivityWithIdOf activity.activityId) ] [ text activity.activityDescription ]
+
+
+viewNow : Maybe Now -> Html Msg
+viewNow maybeNow =
+    case maybeNow of
+        Nothing ->
+            div [ class "block" ] [ text "NOTHING !" ]
+
+        Just now ->
+            div [ class "now" ]
+                [ span [] [ text ("Year: " ++ Debug.toString now.year) ]
+                , span [] [ text ("Month: " ++ now.month) ]
+                , span [] [ text ("Week: " ++ Debug.toString now.week) ]
+                , span [] [ text ("Day: " ++ now.day) ]
+                ]
 
 
 

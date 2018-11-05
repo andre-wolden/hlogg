@@ -53,10 +53,16 @@ update message model =
             ( { model | debugMessage = "posting new record failed with error message: " ++ Debug.toString error }, Cmd.none )
 
         Messages.RecordDeleted (Ok success) ->
-            ( model, Cmd.none )
+            ( model, Commands.getRecords )
 
         Messages.RecordDeleted (Err error) ->
             ( { model | debugMessage = "Was not able to delete record. Error: " ++ Debug.toString error }, Cmd.none )
+
+        Messages.GetNow (Ok now) ->
+            ( { model | now = Just now }, Cmd.none )
+
+        Messages.GetNow (Err error) ->
+            ( { model | debugMessage = "Was not able to get time information. Error: " ++ Debug.toString error }, Cmd.none )
 
 
 

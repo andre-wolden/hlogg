@@ -1,10 +1,10 @@
-module Commands exposing (baseUrl, decodeActivities, decodeActivity, decodeRecord, decodeRecords, deleteRecord, deleteRecordRequest, getActivities, getActivitiesRequest, getRecords, getRecordsRequest, postNewRecord, postRecordBody, postRecordRequest)
+module Commands exposing (baseUrl, decodeActivities, decodeActivity, decodeRecord, decodeRecords, deleteRecord, deleteRecordRequest, getActivities, getActivitiesRequest, getNow, getNowRequest, getRecords, getRecordsRequest, postNewRecord, postRecordBody, postRecordRequest)
 
 import Http
 import Json.Decode as Decode exposing (list, string)
 import Json.Encode as Encode
 import Messages exposing (..)
-import Model exposing (Activities, Activity, Record, Records)
+import Model exposing (Activities, Activity, Now, Record, Records)
 import RemoteData exposing (WebData)
 
 
@@ -104,6 +104,29 @@ decodeActivity =
 getActivities : Cmd Msg
 getActivities =
     Http.send LoadActivities getActivitiesRequest
+
+
+
+-- Time Thingy
+
+
+decodeNow : Decode.Decoder Now
+decodeNow =
+    Decode.map4 Now
+        (Decode.field "Year" Decode.int)
+        (Decode.field "Month" Decode.string)
+        (Decode.field "Week" Decode.int)
+        (Decode.field "Day" Decode.string)
+
+
+getNowRequest : Http.Request Now
+getNowRequest =
+    Http.get (baseUrl ++ "/now") decodeNow
+
+
+getNow : Cmd Msg
+getNow =
+    Http.send GetNow getNowRequest
 
 
 

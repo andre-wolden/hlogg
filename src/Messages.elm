@@ -21,3 +21,4 @@ type Msg
     | RecordAdded (Result Http.Error Model.Record)
     | DeleteRecord Int
     | RecordDeleted (Result Http.Error Bool)
+    | GetNow (Result Http.Error Model.Now)

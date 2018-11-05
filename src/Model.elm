@@ -1,11 +1,4 @@
-module Model exposing
-    ( Activities
-    , Activity
-    , AddRecordBlockState(..)
-    , Model
-    , Record
-    , Records
-    )
+module Model exposing (Activities, Activity, AddRecordBlockState(..), Model, Now, Record, Records)
 
 
 type alias Model =
@@ -13,6 +6,7 @@ type alias Model =
     , records : Records
     , activities : Activities
     , addRecordBlockState : AddRecordBlockState
+    , now : Maybe Now
     }
 
 
@@ -41,3 +35,15 @@ type alias Activity =
 type AddRecordBlockState
     = PlusSign
     | ListOfActivities
+
+
+type alias Now =
+    { year : Int
+    , month : String
+    , week : Int
+    , day : String
+    }
+
+
+
+-- END

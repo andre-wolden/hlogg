@@ -39,9 +39,11 @@ init flags =
       , records = []
       , activities = []
       , addRecordBlockState = Model.PlusSign
+      , now = Nothing
       }
     , Cmd.batch
         [ Commands.getRecords
         , Commands.getActivities
+        , Commands.getNow
         ]
     )
