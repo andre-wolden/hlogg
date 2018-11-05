@@ -26,7 +26,7 @@ main =
         , update = update
         , view =
             \m ->
-                { title = "Elm 0.19 starter"
+                { title = "Hobby Logg"
                 , body = [ view m ]
                 }
         , subscriptions = \_ -> Sub.none
