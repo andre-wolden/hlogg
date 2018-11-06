@@ -4,7 +4,8 @@ import Http
 import Json.Decode as Decode exposing (list, string)
 import Json.Encode as Encode
 import Messages exposing (..)
-import Model exposing (Activities, Activity, Now, Record, Records)
+import Models.Model exposing (Model)
+import Models.Types exposing (..)
 import RemoteData exposing (WebData)
 
 
@@ -78,6 +79,25 @@ deleteRecordRequest record_id =
 deleteRecord : Int -> Cmd Msg
 deleteRecord record_id =
     Http.send RecordDeleted (deleteRecordRequest record_id)
+
+
+postNewRecordOnDate : Int -> String -> Cmd Msg
+postNewRecordOnDate activity_id date =
+    Http.send RecordAdded (postRecordOnDateRequest activity_id date)
+
+
+postRecordOnDateRequest : Int -> String -> Http.Request Record
+postRecordOnDateRequest activity_id date =
+    Http.post (baseUrl ++ "/records/new_with_date") (postRecordBodyWithDate activity_id date) decodeRecord
+
+
+postRecordBodyWithDate : Int -> String -> Http.Body
+postRecordBodyWithDate activity_id date =
+    Encode.object
+        [ ( "activity_id", Encode.int activity_id )
+        , ( "date", Encode.string date )
+        ]
+        |> Http.jsonBody
 
 
 

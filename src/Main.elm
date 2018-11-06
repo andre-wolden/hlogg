@@ -9,7 +9,9 @@ import Html.Events exposing (..)
 import Http exposing (Error(..))
 import Json.Decode as Decode
 import Messages exposing (Msg)
-import Model exposing (AddRecordBlockState(..), Model)
+import Models.Model exposing (Model)
+import Models.SubModelAddRecordOnDate exposing (..)
+import Models.Types exposing (..)
 import Update exposing (update)
 import Url exposing (Url)
 import Url.Parser as UrlParser
@@ -38,8 +40,9 @@ init flags =
     ( { debugMessage = "Number, from index.js: " ++ Debug.toString flags
       , records = []
       , activities = []
-      , addRecordBlockState = Model.PlusSign
+      , addRecordBlockState = PlusSign
       , now = Nothing
+      , subModelAddRecordOnDate = initSubModelAddRecordOnDate
       }
     , Cmd.batch
         [ Commands.getRecords
@@ -47,3 +50,11 @@ init flags =
         , Commands.getNow
         ]
     )
+
+
+initSubModelAddRecordOnDate : SubModelAddRecordOnDate
+initSubModelAddRecordOnDate =
+    { viewState = Initial
+    , activity_id = Nothing
+    , date = ""
+    }

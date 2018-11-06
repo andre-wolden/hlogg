@@ -5,7 +5,8 @@ import Debug
 import Http
 import Json.Decode as Decode
 import Messages exposing (..)
-import Model exposing (..)
+import Models.Model exposing (Model)
+import Models.Types exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -63,6 +64,27 @@ update message model =
 
         Messages.GetNow (Err error) ->
             ( { model | debugMessage = "Was not able to get time information. Error: " ++ Debug.toString error }, Cmd.none )
+
+        -- Adding Record On date
+        Messages.RecordOnDateChooseActivity activity_id ->
+            let
+                old_model =
+                    model.subModelAddRecordOnDate
+
+                new_model =
+                    { old_model | activity_id = Just activity_id }
+            in
+            ( { model | subModelAddRecordOnDate = new_model, debugMessage = Debug.toString activity_id }, Cmd.none )
+
+        Messages.NewRecordOnDateChooseDate string ->
+            let
+                old_model =
+                    model.subModelAddRecordOnDate
+
+                new_model =
+                    { old_model | date = string }
+            in
+            ( { model | subModelAddRecordOnDate = new_model }, Cmd.none )
 
 
 

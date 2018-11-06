@@ -1,13 +1,9 @@
-module Model exposing (Activities, Activity, AddRecordBlockState(..), Model, Now, Record, Records)
+module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Now, Record, Records, ViewStateAddRecordOnDate(..))
 
 
-type alias Model =
-    { debugMessage : String
-    , records : Records
-    , activities : Activities
-    , addRecordBlockState : AddRecordBlockState
-    , now : Maybe Now
-    }
+type AddRecordBlockState
+    = PlusSign
+    | ListOfActivities
 
 
 type alias Records =
@@ -32,11 +28,6 @@ type alias Activity =
     }
 
 
-type AddRecordBlockState
-    = PlusSign
-    | ListOfActivities
-
-
 type alias Now =
     { year : Int
     , month : String
@@ -45,5 +36,5 @@ type alias Now =
     }
 
 
-
--- END
+type ViewStateAddRecordOnDate
+    = Initial

@@ -2,7 +2,7 @@ module Messages exposing (Metadata, Msg(..))
 
 import Http
 import Json.Decode as Decode
-import Model
+import Models.Types exposing (Activities, Now, Record, Records)
 
 
 type alias Metadata =
@@ -13,12 +13,14 @@ type alias Metadata =
 
 type Msg
     = NoOp
-    | LoadRecords (Result Http.Error Model.Records)
-    | LoadActivities (Result Http.Error Model.Activities)
+    | LoadRecords (Result Http.Error Records)
+    | LoadActivities (Result Http.Error Activities)
     | ExpandAddRecordList
     | CollapseAddRecordList
     | AddActivityWithIdOf Int
-    | RecordAdded (Result Http.Error Model.Record)
+    | RecordAdded (Result Http.Error Record)
     | DeleteRecord Int
     | RecordDeleted (Result Http.Error Bool)
-    | GetNow (Result Http.Error Model.Now)
+    | GetNow (Result Http.Error Now)
+    | RecordOnDateChooseActivity Int
+    | NewRecordOnDateChooseDate String
