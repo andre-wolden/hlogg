@@ -11,6 +11,7 @@ type alias Model =
     , addRecordBlockState : AddRecordBlockState
     , now : Maybe Now
     , subModelAddRecordOnDate : SubModelAddRecordOnDate
+    , dates : Maybe Dates
     }
 
 

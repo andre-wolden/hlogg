@@ -43,11 +43,13 @@ init flags =
       , addRecordBlockState = PlusSign
       , now = Nothing
       , subModelAddRecordOnDate = initSubModelAddRecordOnDate
+      , dates = Nothing
       }
     , Cmd.batch
         [ Commands.getRecords
         , Commands.getActivities
         , Commands.getNow
+        , Commands.getDates
         ]
     )
 
@@ -56,5 +58,5 @@ initSubModelAddRecordOnDate : SubModelAddRecordOnDate
 initSubModelAddRecordOnDate =
     { viewState = Initial
     , activity_id = Nothing
-    , date = ""
+    , date = Nothing
     }

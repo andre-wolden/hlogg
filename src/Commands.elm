@@ -1,10 +1,11 @@
-module Commands exposing (baseUrl, decodeActivities, decodeActivity, decodeRecord, decodeRecords, deleteRecord, deleteRecordRequest, getActivities, getActivitiesRequest, getNow, getNowRequest, getRecords, getRecordsRequest, postNewRecord, postRecordBody, postRecordRequest)
+module Commands exposing (baseUrl, decodeActivities, decodeActivity, decodeRecord, decodeRecords, deleteRecord, deleteRecordRequest, getActivities, getActivitiesRequest, getDates, getNow, getNowRequest, getRecords, getRecordsRequest, postNewRecord, postRecordBody, postRecordRequest, saveNewRecordOnDate)
 
 import Http
 import Json.Decode as Decode exposing (list, string)
 import Json.Encode as Encode
 import Messages exposing (..)
 import Models.Model exposing (Model)
+import Models.SubModelAddRecordOnDate exposing (..)
 import Models.Types exposing (..)
 import RemoteData exposing (WebData)
 
@@ -12,6 +13,29 @@ import RemoteData exposing (WebData)
 baseUrl : String
 baseUrl =
     "http://localhost:8080"
+
+
+
+-- Record On Date Commands
+
+
+saveNewRecordOnDate : Int -> String -> Cmd Msg
+saveNewRecordOnDate activity_id date =
+    Http.send RecordAdded (postNewRecordOnDateRequest activity_id date)
+
+
+postNewRecordOnDateRequest : Int -> String -> Http.Request Record
+postNewRecordOnDateRequest activity_id date =
+    Http.post (baseUrl ++ "/records/new_with_date") (postNewRecordOnDateBody activity_id date) decodeRecord
+
+
+postNewRecordOnDateBody : Int -> String -> Http.Body
+postNewRecordOnDateBody activity_id date =
+    Encode.object
+        [ ( "activity_id", Encode.int activity_id )
+        , ( "date", Encode.string date )
+        ]
+        |> Http.jsonBody
 
 
 
@@ -130,13 +154,9 @@ getActivities =
 -- Time Thingy
 
 
-decodeNow : Decode.Decoder Now
-decodeNow =
-    Decode.map4 Now
-        (Decode.field "Year" Decode.int)
-        (Decode.field "Month" Decode.string)
-        (Decode.field "Week" Decode.int)
-        (Decode.field "Day" Decode.string)
+getNow : Cmd Msg
+getNow =
+    Http.send GetNow getNowRequest
 
 
 getNowRequest : Http.Request Now
@@ -144,9 +164,40 @@ getNowRequest =
     Http.get (baseUrl ++ "/now") decodeNow
 
 
-getNow : Cmd Msg
-getNow =
-    Http.send GetNow getNowRequest
+decodeNow : Decode.Decoder Now
+decodeNow =
+    Decode.map5 Now
+        (Decode.field "year" Decode.int)
+        (Decode.field "month" Decode.string)
+        (Decode.field "week" Decode.int)
+        (Decode.field "day" Decode.string)
+        (Decode.field "dayOfMonth" Decode.int)
+
+
+
+-- Dates
+
+
+getDates : Cmd Msg
+getDates =
+    Http.send GetDates getDatesRequest
+
+
+getDatesRequest : Http.Request Dates
+getDatesRequest =
+    Http.get (baseUrl ++ "/dates") decodeDates
+
+
+decodeDates : Decode.Decoder Dates
+decodeDates =
+    Decode.list
+        (Decode.map5 Date
+            (Decode.field "localDate" Decode.string)
+            (Decode.field "year" Decode.int)
+            (Decode.field "month" Decode.string)
+            (Decode.field "week" Decode.int)
+            (Decode.field "dayOfWeek" Decode.string)
+        )
 
 
 

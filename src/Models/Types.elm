@@ -1,4 +1,4 @@
-module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Now, Record, Records, ViewStateAddRecordOnDate(..))
+module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Date, Dates, Now, Record, Records, ViewStateAddRecordOnDate(..))
 
 
 type AddRecordBlockState
@@ -33,8 +33,26 @@ type alias Now =
     , month : String
     , week : Int
     , day : String
+    , dayOfMonth : Int
     }
 
 
 type ViewStateAddRecordOnDate
     = Initial
+
+
+type alias Dates =
+    List Date
+
+
+type alias Date =
+    { localDate : String
+    , year : Int
+    , month : String
+    , week : Int
+    , dayOfWeek : String
+    }
+
+
+
+-- END

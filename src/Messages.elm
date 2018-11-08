@@ -2,7 +2,7 @@ module Messages exposing (Metadata, Msg(..))
 
 import Http
 import Json.Decode as Decode
-import Models.Types exposing (Activities, Now, Record, Records)
+import Models.Types exposing (Activities, Date, Now, Record, Records)
 
 
 type alias Metadata =
@@ -24,3 +24,5 @@ type Msg
     | GetNow (Result Http.Error Now)
     | RecordOnDateChooseActivity Int
     | NewRecordOnDateChooseDate String
+    | SaveNewRecordOnDate Int String
+    | GetDates (Result Http.Error (List Date))

@@ -82,9 +82,19 @@ update message model =
                     model.subModelAddRecordOnDate
 
                 new_model =
-                    { old_model | date = string }
+                    { old_model | date = Just string }
             in
             ( { model | subModelAddRecordOnDate = new_model }, Cmd.none )
+
+        Messages.SaveNewRecordOnDate activity_id date ->
+            ( model, Commands.saveNewRecordOnDate activity_id date )
+
+        -- Get all dates
+        Messages.GetDates (Ok listOfDates) ->
+            ( { model | dates = Just listOfDates }, Cmd.none )
+
+        Messages.GetDates (Err error) ->
+            ( { model | debugMessage = Debug.toString error }, Cmd.none )
 
 
 

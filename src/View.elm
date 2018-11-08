@@ -12,7 +12,7 @@ import Models.Types exposing (..)
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ div [ class "block" ] [ text "TITTEL" ]
+        [ div [ class "block" ] [ text "Hobby Logg" ]
         , div [ class "nowBlock" ] [ viewNow model.now ]
         , div [ class "block" ] (List.map viewRecord model.records)
         , div [ class "block" ] (List.map viewActivity model.activities)
@@ -80,8 +80,7 @@ viewNow maybeNow =
 
         Just now ->
             div [ class "now" ]
-                [ span [] [ text ("Year: " ++ Debug.toString now.year) ]
-                , span [] [ text ("Month: " ++ now.month) ]
+                [ span [] [ text (Debug.toString now.year ++ "-" ++ now.month ++ "-" ++ Debug.toString now.dayOfMonth) ]
                 , span [] [ text ("Week: " ++ Debug.toString now.week) ]
                 , span [] [ text ("Day: " ++ now.day) ]
                 ]
@@ -92,17 +91,30 @@ viewNow maybeNow =
 
 
 addRecordOnDateBlock : SubModelAddRecordOnDate -> Activities -> Html Msg
-addRecordOnDateBlock model activities =
-    case model.viewState of
+addRecordOnDateBlock submodel activities =
+    case submodel.viewState of
         Initial ->
             div []
                 [ text "Add record on specific date block"
-                , button [] [ text "SAVE" ]
+                , addRecordOnDateValidEntry submodel
                 , listActivitiesToChooseAmong activities
                 , input [ onInput Messages.NewRecordOnDateChooseDate ] []
-                , div [] [ text (Debug.toString model.activity_id) ]
-                , div [] [ text model.date ]
+                , div [] [ text (Debug.toString submodel.activity_id) ]
+                , div [] [ text (Debug.toString submodel.date) ]
                 ]
+
+
+addRecordOnDateValidEntry : SubModelAddRecordOnDate -> Html Msg
+addRecordOnDateValidEntry submodel =
+    case ( submodel.activity_id, submodel.date ) of
+        ( Just activity_id, Just date ) ->
+            button [ class "validButtonEntry", onClick (Messages.SaveNewRecordOnDate activity_id date) ] [ text "Now you can save" ]
+
+        ( Nothing, _ ) ->
+            button [ class "invalidButtonEntry" ] [ text "SAVE" ]
+
+        ( _, Nothing ) ->
+            button [ class "invalidButtonEntry" ] [ text "SAVE" ]
 
 
 listActivitiesToChooseAmong : Activities -> Html Msg
