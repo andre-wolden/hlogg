@@ -12,6 +12,7 @@ type alias Model =
     , now : Maybe Now
     , subModelAddRecordOnDate : SubModelAddRecordOnDate
     , dates : Maybe Dates
+    , page : Page
     }
 
 

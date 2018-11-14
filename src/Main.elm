@@ -44,6 +44,7 @@ init flags =
       , now = Nothing
       , subModelAddRecordOnDate = initSubModelAddRecordOnDate
       , dates = Nothing
+      , page = Years
       }
     , Cmd.batch
         [ Commands.getRecords

@@ -1,8 +1,9 @@
 @import '~purecss/build/pure.css';
 
 body {
-    background-color: rgb(52, 52, 52);
-    margin-top: 20px;
+
+    @media screen and (max-width: 480px) {
+    }
 }
 
 header {
@@ -13,6 +14,113 @@ header {
         margin-right: 30px;
     }
 }
+
+.top {
+  background-image: url("/images/top-bg3.jpg");
+
+  @media screen and (max-width: 480px) {
+    border-bottom: 5px solid rgb(20,20,20);
+    display: block;
+    background-size: 480px;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    font-weight: 600;
+    font-family: monospace;
+  }
+}
+
+.topWeek {
+  font-size: 60px;
+}
+
+.body {
+  background-color: rgb(142, 120, 120);
+
+  @media screen and (max-width: 480px) {
+    display: block;
+    text-align: center;
+    padding-bottom: 48px;
+  }
+}
+
+.years {
+  padding-top: 32px;
+  font-size: 40px;
+
+  .line {
+    padding-bottom: 16px;
+    display: block;
+    text-align: center;
+  }
+}
+
+.backArrow {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 60px;
+}
+
+.bodyTitle {
+  display:inline-block;
+  padding-left: 50px;
+  font-size: 60px;
+}
+
+.year {
+  padding-top: 32px;
+  font-size: 40px;
+  transition: all 1s ease-out;
+}
+
+.yearHeader {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 32px;
+  text-align: left;
+}
+
+.weekSquare {
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 28px;
+
+}
+
+.week {
+  padding-top: 32px;
+  font-size: 40px;
+}
+
+.weekHeader {
+
+}
+
+.weekBody {
+  font-size: 16px;
+}
+
+
+.footer {
+  height: 100px;
+  background-color: rgb(10, 11, 11);
+  color: rgb(230, 230, 230);
+  text-align: center;
+  padding-top: 34px;
+  font-family: fantasy;
+}
+
+
+
+// Desktop
 
 .logo {
     background: url('images/logo.png');

@@ -1,4 +1,4 @@
-module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Date, Dates, Now, Record, Records, ViewStateAddRecordOnDate(..))
+module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Date, Dates, Now, Page(..), Record, Records, ViewStateAddRecordOnDate(..))
 
 
 type AddRecordBlockState
@@ -52,6 +52,13 @@ type alias Date =
     , week : Int
     , dayOfWeek : String
     }
+
+
+type Page
+    = Years
+    | Year Int
+    | Week Int Int
+    | Debug
 
 
 

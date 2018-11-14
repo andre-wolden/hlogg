@@ -13,6 +13,7 @@ type alias Metadata =
 
 type Msg
     = NoOp
+    | Alert
     | LoadRecords (Result Http.Error Records)
     | LoadActivities (Result Http.Error Activities)
     | ExpandAddRecordList
@@ -26,3 +27,6 @@ type Msg
     | NewRecordOnDateChooseDate String
     | SaveNewRecordOnDate Int String
     | GetDates (Result Http.Error (List Date))
+    | GoToYears
+    | GoToYear Int
+    | GoToWeek Int Int

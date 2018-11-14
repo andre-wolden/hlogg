@@ -7,23 +7,35 @@ import Messages exposing (Msg)
 import Models.Model exposing (Model)
 import Models.SubModelAddRecordOnDate exposing (..)
 import Models.Types exposing (..)
+import Views.ViewMobile exposing (viewOnMobile)
 
 
 view : Model -> Html Msg
 view model =
-    div [ class "container" ]
-        [ div [ class "block" ] [ text "Hobby Logg" ]
-        , div [ class "nowBlock" ] [ viewNow model.now ]
-        , div [ class "block" ] (List.map viewRecord model.records)
-        , div [ class "block" ] (List.map viewActivity model.activities)
-        , div [ class "block" ]
-            [ text "Lagre Ny Record"
-            , addRecordBlock model.addRecordBlockState model.activities
-            ]
-        , div [ class "block" ] [ text "Lagre Ny Aktivitet" ]
-        , div [ class "block" ] [ addRecordOnDateBlock model.subModelAddRecordOnDate model.activities ]
-        , div [ class "block" ] [ text model.debugMessage ]
-        ]
+    case model.page of
+        Years ->
+            viewOnMobile model
+
+        Year year ->
+            viewOnMobile model
+
+        Week year week ->
+            viewOnMobile model
+
+        Debug ->
+            div [ class "container" ]
+                [ div [ class "block" ] [ text "Hobby Logg" ]
+                , div [ class "nowBlock" ] [ viewNow model.now ]
+                , div [ class "block" ] (List.map viewRecord model.records)
+                , div [ class "block" ] (List.map viewActivity model.activities)
+                , div [ class "block" ]
+                    [ text "Lagre Ny Record"
+                    , addRecordBlock model.addRecordBlockState model.activities
+                    ]
+                , div [ class "block" ] [ text "Lagre Ny Aktivitet" ]
+                , div [ class "block" ] [ addRecordOnDateBlock model.subModelAddRecordOnDate model.activities ]
+                , div [ class "block" ] [ text model.debugMessage ]
+                ]
 
 
 viewRecord : Record -> Html Msg

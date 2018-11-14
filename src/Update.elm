@@ -15,6 +15,9 @@ update message model =
         Messages.NoOp ->
             ( model, Cmd.none )
 
+        Messages.Alert ->
+            ( { model | debugMessage = "ALERT" }, Cmd.none )
+
         -- http stuff
         Messages.LoadRecords (Ok records) ->
             ( { model | records = records }, Cmd.none )
@@ -95,6 +98,16 @@ update message model =
 
         Messages.GetDates (Err error) ->
             ( { model | debugMessage = Debug.toString error }, Cmd.none )
+
+        -- Mobile View stuff
+        Messages.GoToYears ->
+            ( { model | page = Years }, Cmd.none )
+
+        Messages.GoToYear year ->
+            ( { model | page = Year year }, Cmd.none )
+
+        Messages.GoToWeek year week ->
+            ( { model | page = Week year week }, Cmd.none )
 
 
 
