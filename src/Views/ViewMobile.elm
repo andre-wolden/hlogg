@@ -12,9 +12,11 @@ viewOnMobile : Model -> Html Msg
 viewOnMobile model =
     div []
         [ div [ class "top" ]
-            [ text "2018-11-01"
-            , br [] []
-            , div [ class "topWeek" ] [ text "Week 45" ]
+            [ div [ class "firstBlock" ] [ text "2018-11-01" ]
+            , div [ class "secondBlock" ]
+                [ div [ class "topWeek" ] [ text "Week 45" ]
+                , div [ class "burger" ] [ text "+" ]
+                ]
             ]
         , div [ class "body" ]
             [ subPages model ]
@@ -41,11 +43,11 @@ subPages model =
 insertYearsView : Model -> Html Msg
 insertYearsView model =
     div [ class "years" ]
-        [ div [ class "line" ] [ button [ onClick (GoToYear 2018) ] [ text "2018" ] ]
-        , div [ class "line" ] [ button [ onClick (GoToYear 2017) ] [ text "2017" ] ]
-        , div [ class "line" ] [ button [ onClick (GoToYear 2016) ] [ text "2016" ] ]
-        , div [ class "line" ] [ button [ onClick (GoToYear 2015) ] [ text "2015" ] ]
-        , div [ class "line" ] [ button [ onClick (GoToYear 2014) ] [ text "2014" ] ]
+        [ div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2018) ] [ text "2018" ] ]
+        , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2017) ] [ text "2017" ] ]
+        , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2016) ] [ text "2016" ] ]
+        , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2015) ] [ text "2015" ] ]
+        , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2014) ] [ text "2014" ] ]
         ]
 
 

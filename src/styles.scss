@@ -20,7 +20,6 @@ header {
 
   @media screen and (max-width: 480px) {
     border-bottom: 5px solid rgb(20,20,20);
-    display: block;
     background-size: 480px;
     text-align: center;
     font-size: 40px;
@@ -29,11 +28,30 @@ header {
     color: white;
     font-weight: 600;
     font-family: monospace;
-  }
-}
+    display: block;
 
-.topWeek {
-  font-size: 60px;
+  }
+
+  .firstBlock {
+    display: block;
+  }
+
+  .secondBlock {
+    display: flex;
+
+
+    .topWeek {
+      font-size: 60px;
+      display: inline-block;
+      border: 1px dotted red;
+    }
+    .burger {
+      border: 1px dotted red;
+      display: inline-block;
+      justify-content: space-between;
+    }
+  }
+
 }
 
 .body {
@@ -50,10 +68,22 @@ header {
   padding-top: 32px;
   font-size: 40px;
 
+
+
   .line {
     padding-bottom: 16px;
     display: block;
     text-align: center;
+
+    .year_button {
+      border: 3px solid rgb(50, 50, 50);;
+      border-radius: 8px;
+      width: 90%;
+      background-color: rgb(120, 100, 100);
+      padding: 10px;
+      outline:none
+
+    }
   }
 }
 
