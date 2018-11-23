@@ -29,7 +29,6 @@ header {
     font-weight: 600;
     font-family: monospace;
     display: block;
-
   }
 
   .firstBlock {
@@ -38,7 +37,6 @@ header {
 
   .secondBlock {
     display: flex;
-
 
     .topWeek {
       font-size: 60px;
@@ -55,7 +53,7 @@ header {
 }
 
 .body {
-  background-color: rgb(142, 120, 120);
+  background-color: rgb(255, 255, 255);
 
   @media screen and (max-width: 480px) {
     display: block;
@@ -68,21 +66,18 @@ header {
   padding-top: 32px;
   font-size: 40px;
 
-
-
   .line {
     padding-bottom: 16px;
     display: block;
     text-align: center;
 
     .year_button {
-      border: 3px solid rgb(50, 50, 50);;
+      border: 1px solid rgb(50, 50, 50);;
       border-radius: 8px;
       width: 90%;
-      background-color: rgb(120, 100, 100);
+      background-color: rgb(255, 255, 255);
       padding: 10px;
       outline:none
-
     }
   }
 }
@@ -148,10 +143,7 @@ header {
   font-family: fantasy;
 }
 
-
-
 // Desktop
-
 .logo {
     background: url('images/logo.png');
     width: 60px;
