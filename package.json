@@ -5,11 +5,13 @@
     "description": "Elm 0.19 starter with Webpack 4 hot-reloading",
     "main": "index.js",
     "scripts": {
+        "postinstall": "npm run build",
         "test": "elm-test",
         "start": "npm run dev",
         "dev": "webpack-dev-server --hot --colors --port 3000",
         "build": "webpack",
-        "prod": "webpack -p"
+        "prod": "webpack -p",
+        "production": "node server"
     },
     "repository": {
         "type": "git",
@@ -43,6 +45,7 @@
         "webpack-merge": "^4.1.4"
     },
     "dependencies": {
+        "express": "^4.16.4",
         "purecss": "^1.0.0"
     },
     "prettier": {
