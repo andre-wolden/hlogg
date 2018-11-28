@@ -44,7 +44,7 @@ init flags =
       , now = Nothing
       , subModelAddRecordOnDate = initSubModelAddRecordOnDate
       , dates = Nothing
-      , page = Debug
+      , page = Week 2018 48
       }
     , Cmd.batch
         [ Commands.getRecords

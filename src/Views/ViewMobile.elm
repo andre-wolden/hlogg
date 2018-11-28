@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
 import Models.Types exposing (Page(..))
+import Views.Burger exposing (burger)
 
 
 viewOnMobile : Model -> Html Msg
@@ -15,7 +16,7 @@ viewOnMobile model =
             [ div [ class "firstBlock" ] [ text "2018-11-01" ]
             , div [ class "secondBlock" ]
                 [ div [ class "topWeek" ] [ text "Week 45" ]
-                , div [ class "burger" ] [ text "+" ]
+                , burger
                 ]
             ]
         , div [ class "body" ]
