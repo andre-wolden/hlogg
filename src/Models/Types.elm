@@ -1,4 +1,16 @@
-module Models.Types exposing (Activities, Activity, AddRecordBlockState(..), Date, Dates, Now, Page(..), Record, Records, ViewStateAddRecordOnDate(..))
+module Models.Types exposing
+    ( Activities
+    , Activity
+    , AddRecordBlockState(..)
+    , BurgerStatus(..)
+    , Date
+    , Dates
+    , Now
+    , Page(..)
+    , Record
+    , Records
+    , ViewStateAddRecordOnDate(..)
+    )
 
 
 type AddRecordBlockState
@@ -59,6 +71,11 @@ type Page
     | Year Int
     | Week Int Int
     | Debug
+
+
+type BurgerStatus
+    = Open
+    | Closed
 
 
 

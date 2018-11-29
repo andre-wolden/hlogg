@@ -6,7 +6,9 @@ import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
 import Models.Types exposing (Page(..))
-import Views.Burger exposing (burger)
+import Views.Burger exposing (burger, burgerOpen)
+import Views.BurgerMenu exposing (burgerMenu)
+import Views.DropDownMenu exposing (dropDownMenu)
 
 
 viewOnMobile : Model -> Html Msg
@@ -16,8 +18,9 @@ viewOnMobile model =
             [ div [ class "firstBlock" ] [ text "2018-11-01" ]
             , div [ class "secondBlock" ]
                 [ div [ class "topWeek" ] [ text "Week 45" ]
-                , burger
+                , burgerMenu model.burgerStatus
                 ]
+            , dropDownMenu model
             ]
         , div [ class "body" ]
             [ subPages model ]

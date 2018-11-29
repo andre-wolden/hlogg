@@ -13,6 +13,7 @@ type alias Model =
     , subModelAddRecordOnDate : SubModelAddRecordOnDate
     , dates : Maybe Dates
     , page : Page
+    , burgerStatus : BurgerStatus
     }
 
 

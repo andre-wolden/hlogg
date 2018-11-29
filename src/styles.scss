@@ -24,7 +24,6 @@ header {
     text-align: center;
     font-size: 40px;
     padding-top: 10px;
-    padding-bottom: 10px;
     color: white;
     font-weight: 600;
     font-family: monospace;
@@ -33,19 +32,14 @@ header {
 
   .firstBlock {
     display: block;
-    border: 1px dotted red;
-
   }
 
   .secondBlock {
     display: flex;
-    border: 1px dotted red;
-
 
     .topWeek {
       margin-left: auto;
       font-size: 60px;
-      border: 1px dotted red;
       display: inline-block;
     }
 
@@ -55,9 +49,34 @@ header {
       vertical-align: middle;
       display: flex;
       align-items: center;
-      border: 1px dotted red;
       outline:none;
       background-color: transparent;
+    }
+  }
+
+  .dropDownMenu {
+
+    background-color: black;
+
+    &.open {
+      height: 200px;
+      transition-property: height;
+      transition-duration: 0.5s;
+    }
+
+    &.closed {
+      height: 0;
+      transition-property: height;
+      transition-duration: 0.5s;
+    }
+
+    ul {
+      padding: 30px;
+      margin: 0;
+      list-style: none;
+      text-align: left;
+      font-family: sans-serif;
+      font-size: 40px;
     }
   }
 
@@ -193,7 +212,6 @@ header {
 .now {
   span {
     font-size: 18px;
-    border: 1px dotted red;
     border-radius: 12px;
     background-color: white;
     padding: 4px;

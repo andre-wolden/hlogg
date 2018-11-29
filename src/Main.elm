@@ -45,6 +45,7 @@ init flags =
       , subModelAddRecordOnDate = initSubModelAddRecordOnDate
       , dates = Nothing
       , page = Week 2018 48
+      , burgerStatus = Closed
       }
     , Cmd.batch
         [ Commands.getRecords

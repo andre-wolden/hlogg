@@ -30,3 +30,5 @@ type Msg
     | GoToYears
     | GoToYear Int
     | GoToWeek Int Int
+    | OpenBurger
+    | CloseBurger

@@ -109,6 +109,12 @@ update message model =
         Messages.GoToWeek year week ->
             ( { model | page = Week year week }, Cmd.none )
 
+        Messages.OpenBurger ->
+            ( { model | burgerStatus = Open }, Cmd.none )
+
+        Messages.CloseBurger ->
+            ( { model | burgerStatus = Closed }, Cmd.none )
+
 
 
 -- END
