@@ -11,10 +11,10 @@ import Models.Types exposing (..)
 dropDownMenu : Model -> Html Msg
 dropDownMenu model =
     div [ class "dropDownMenu", class (dropDownMenuDisplay model.burgerStatus) ]
-        [ ul []
-            [ li [] [ text "Statistics" ]
-            , li [] [ text "Graphs" ]
-            , li [] [ text "About" ]
+        [ ul [ class "menuList" ]
+            [ li [] [ button [ class "dropDownMenyButton" ] [ text "Statistics" ] ]
+            , li [] [ button [ class "dropDownMenyButton" ] [ text "Graphs" ] ]
+            , li [] [ button [ class "dropDownMenyButton" ] [ text "About" ] ]
             ]
         ]
 

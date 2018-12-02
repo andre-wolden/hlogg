@@ -1,6 +1,6 @@
 module Views.ViewMobile exposing (viewOnMobile)
 
-import Html exposing (Html, br, button, div, i, img, p, text)
+import Html exposing (Html, br, button, div, i, img, li, p, text, ul)
 import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
@@ -23,13 +23,13 @@ viewOnMobile model =
             , dropDownMenu model
             ]
         , div [ class "body" ]
-            [ subPages model ]
+            [ body model ]
         , div [ class "footer" ] [ text "Hobby Logger" ]
         ]
 
 
-subPages : Model -> Html Msg
-subPages model =
+body : Model -> Html Msg
+body model =
     case model.page of
         Years ->
             insertYearsView model
@@ -86,15 +86,36 @@ insertWeekView model year week =
     div [ class "week" ]
         [ div [ class "weekHeader" ]
             [ button [ class "backArrow", onClick (GoToYear year) ] [ i [ class "fas fa-angle-left" ] [] ]
-            , div [ class "weekTitle" ] [ text ("Week " ++ Debug.toString week) ]
+            , div [ class "weekTitle" ] [ text (Debug.toString year ++ ", Week " ++ Debug.toString week) ]
             ]
-        , div [ class "weekBody" ]
-            [ p [] [ text "Monday" ]
-            , p [] [ text "Tuesday" ]
-            , p [] [ text "Wednesday" ]
-            , p [] [ text "Thursday" ]
-            , p [] [ text "Friday" ]
-            , p [] [ text "Saturday" ]
-            , p [] [ text "Sunday" ]
+        , ul [ class "weekBody" ]
+            [ li []
+                [ div [] [ text "Monday" ]
+                , insertDay model year week 1
+                ]
+            , li [] [ text "Tuesday" ]
+            , li [] [ text "Wednesday" ]
+            , li [] [ text "Thursday" ]
+            , li [] [ text "Friday" ]
+            , li [] [ text "Saturday" ]
+            , li [] [ text "Sunday" ]
             ]
         ]
+
+
+insertDay : Model -> Int -> Int -> Int -> Html Msg
+insertDay model year week day =
+    div [ class "day" ]
+        [ div []
+            [ ul []
+                [ li [] [ text "Nørd" ]
+                , li [] [ text "Piano" ]
+                , li [] [ text "Koreansk" ]
+                , li [] [ button [] [ text "+" ] ]
+                ]
+            ]
+        ]
+
+
+
+-- END

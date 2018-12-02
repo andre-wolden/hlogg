@@ -51,12 +51,14 @@ header {
       align-items: center;
       outline:none;
       background-color: transparent;
+      border: none;
     }
   }
 
   .dropDownMenu {
 
     background-color: black;
+    overflow: hidden;
 
     &.open {
       height: 200px;
@@ -77,6 +79,14 @@ header {
       text-align: left;
       font-family: sans-serif;
       font-size: 40px;
+
+      li {
+        .dropDownMenyButton {
+          border: none;
+          outline: none;
+          background-color: transparent;
+        }
+      }
     }
   }
 
@@ -152,17 +162,38 @@ header {
 }
 
 .week {
-  padding-top: 32px;
-  font-size: 40px;
-}
+  font-size: 32px;
+  .weekHeader {
+    border: 1px dotted red;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
 
-.weekHeader {
+    .backArrow {
+      font-size: 32px;
+    }
 
+    .weekTitle {
+
+    }
+  }
 }
 
 .weekBody {
   font-size: 16px;
+  li {
+    list-style: none;
+    text-align: left;
+    font-family: sans-serif;
+  }
 }
+
+.day {
+
+}
+
+
+
 
 
 .footer {

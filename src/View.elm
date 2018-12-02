@@ -13,15 +13,6 @@ import Views.ViewMobile exposing (viewOnMobile)
 view : Model -> Html Msg
 view model =
     case model.page of
-        Years ->
-            viewOnMobile model
-
-        Year year ->
-            viewOnMobile model
-
-        Week year week ->
-            viewOnMobile model
-
         Debug ->
             div [ class "container" ]
                 [ div [ class "block" ] [ text "Hobby Logg" ]
@@ -36,6 +27,9 @@ view model =
                 , div [ class "block" ] [ addRecordOnDateBlock model.subModelAddRecordOnDate model.activities ]
                 , div [ class "block" ] [ text model.debugMessage ]
                 ]
+
+        _ ->
+            viewOnMobile model
 
 
 viewRecord : Record -> Html Msg
