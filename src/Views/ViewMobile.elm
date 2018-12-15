@@ -15,9 +15,9 @@ viewOnMobile : Model -> Html Msg
 viewOnMobile model =
     div []
         [ div [ class "top" ]
-            [ div [ class "firstBlock" ] [ text "2018-11-01" ]
+            [ div [ class "firstBlock" ] [ insertDateToday model ]
             , div [ class "secondBlock" ]
-                [ div [ class "topWeek" ] [ text "Week 45" ]
+                [ div [ class "topWeek" ] [ insertCurrentWeek model ]
                 , burgerMenu model.burgerStatus
                 ]
             , dropDownMenu model
@@ -115,6 +115,25 @@ insertDay model year week day =
                 ]
             ]
         ]
+
+
+insertDateToday : Model -> Html Msg
+insertDateToday model =
+    case model.now of
+        Just now ->
+            text (Debug.toString now.year ++ "-" ++ now.month ++ "-" ++ Debug.toString now.dayOfMonth)
+
+        Nothing ->
+            text "loading"
+
+
+insertCurrentWeek model =
+    case model.now of
+        Just now ->
+            text ("Week " ++ Debug.toString now.week)
+
+        Nothing ->
+            text "loading"
 
 
 
