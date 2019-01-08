@@ -15,16 +15,6 @@ insertYearsView model =
     div [ class "years" ] (insertListOfYears model.dates)
 
 
-
--- div [ class "years" ]
---     [ div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2018) ] [ text "2018" ] ]
---     , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2017) ] [ text "2017" ] ]
---     , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2016) ] [ text "2016" ] ]
---     , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2015) ] [ text "2015" ] ]
---     , div [ class "line" ] [ button [ class "year_button", onClick (GoToYear 2014) ] [ text "2014" ] ]
---     ]
-
-
 insertListOfYears : Maybe Dates -> List (Html Msg)
 insertListOfYears maybeDates =
     case maybeDates of
