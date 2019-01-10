@@ -115,6 +115,17 @@ update message model =
         Messages.CloseBurger ->
             ( { model | burgerStatus = Closed }, Cmd.none )
 
+        Messages.ToggleActivityList date ->
+            case model.addRecordBlockState of
+                PlusSign ->
+                    ( { model | addRecordBlockState = ListOfActivities, dateToOpenListOfActivitiesFor = Just date }, Cmd.none )
+
+                ListOfActivities ->
+                    ( { model | addRecordBlockState = PlusSign }, Cmd.none )
+
+        Messages.NewRecord activity date ->
+            ( model, Commands.saveNewRecordOnDate activity.activityId date.localDate )
+
 
 
 -- END

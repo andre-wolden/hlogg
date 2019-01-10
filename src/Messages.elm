@@ -2,7 +2,7 @@ module Messages exposing (Metadata, Msg(..))
 
 import Http
 import Json.Decode as Decode
-import Models.Types exposing (Activities, Date, Now, Record, Records)
+import Models.Types exposing (Activities, Activity, Date, Now, Record, Records)
 
 
 type alias Metadata =
@@ -32,3 +32,5 @@ type Msg
     | GoToWeek Int Int
     | OpenBurger
     | CloseBurger
+    | ToggleActivityList Date
+    | NewRecord Activity Date

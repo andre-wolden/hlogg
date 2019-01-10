@@ -46,6 +46,7 @@ init flags =
       , dates = Nothing
       , page = Week 2018 48
       , burgerStatus = Closed
+      , dateToOpenListOfActivitiesFor = Nothing
       }
     , Cmd.batch
         [ Commands.getRecords

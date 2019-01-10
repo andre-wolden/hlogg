@@ -5,7 +5,7 @@ import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
-import Models.Types exposing (Date, Page(..), Record, Records)
+import Models.Types exposing (Activity, AddRecordBlockState(..), Date, Page(..), Record, Records)
 
 
 insertWeekView : Model -> Int -> Int -> Html Msg
@@ -38,13 +38,13 @@ insertListOfDays model year week =
         listWeekRecords =
             getListOfRecordsForCurrentWeek model.records year week
     in
-    List.map (insertDaySection listWeekRecords) listDates
+    List.map (insertDaySection model listWeekRecords) listDates
 
 
-insertDaySection : List Record -> Date -> Html Msg
-insertDaySection listOfRecords date =
+insertDaySection : Model -> List Record -> Date -> Html Msg
+insertDaySection model listOfRecords date =
     div [] <|
-        List.append [ text date.dayOfWeek ] <|
+        List.append [ text date.dayOfWeek, insertNewRecordSection model date ] <|
             List.map (renderRecordRow date) listOfRecords
 
 
@@ -103,6 +103,31 @@ maybeYearOfRecord record =
     record.date
         |> String.slice 0 4
         |> String.toInt
+
+
+
+-- insertNewRecordSection model date
+
+
+insertNewRecordSection : Model -> Date -> Html Msg
+insertNewRecordSection model date =
+    let
+        className =
+            if model.dateToOpenListOfActivitiesFor == Just date && model.addRecordBlockState == ListOfActivities then
+                "open"
+
+            else
+                "closed"
+    in
+    div [ class "addRecordBlock" ]
+        [ button [ class "addRecordButton", onClick (ToggleActivityList date) ] [ text "+" ]
+        , div [ class className ] (List.map (activityToHtml date) model.activities)
+        ]
+
+
+activityToHtml : Date -> Activity -> Html Msg
+activityToHtml date activity =
+    div [ onClick (Messages.NewRecord activity date) ] [ text activity.activityDescription ]
 
 
 

@@ -263,3 +263,15 @@ header {
 .recordRow {
   margin-left: 2rem;
 }
+
+.addRecordButton {
+  border: 1px solid grey;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}

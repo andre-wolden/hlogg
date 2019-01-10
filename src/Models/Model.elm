@@ -14,6 +14,7 @@ type alias Model =
     , dates : Maybe Dates
     , page : Page
     , burgerStatus : BurgerStatus
+    , dateToOpenListOfActivitiesFor : Maybe Date
     }
 
 
