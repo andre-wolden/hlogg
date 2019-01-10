@@ -1,9 +1,12 @@
 {
-    "author": "Aiur",
-    "name": "elm-webpack-starter",
-    "version": "3.1.2",
-    "description": "Elm 0.19 starter with Webpack 4 hot-reloading",
+    "author": "woldena",
+    "name": "hlogg",
+    "version": "1.0.1",
+    "description": "Hobby Logging App",
     "main": "index.js",
+    "engines": {
+      "node": "8.0.0"
+    },
     "scripts": {
         "postinstall": "npm run build",
         "test": "elm-test",
