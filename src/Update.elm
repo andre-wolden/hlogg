@@ -126,6 +126,9 @@ update message model =
         Messages.NewRecord activity date ->
             ( model, Commands.saveNewRecordOnDate activity.activityId date.localDate )
 
+        Messages.GoToPage page ->
+            ( { model | page = page, burgerStatus = Closed }, Cmd.none )
+
 
 
 -- END

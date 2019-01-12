@@ -70,6 +70,9 @@ type Page
     = Years
     | Year Int
     | Week Int Int
+    | Statistics
+    | Graphs
+    | About
     | Debug
 
 

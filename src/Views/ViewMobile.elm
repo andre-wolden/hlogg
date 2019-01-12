@@ -6,9 +6,12 @@ import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
 import Models.Types exposing (Page(..))
+import Views.About exposing (viewAbout)
 import Views.Burger exposing (burger, burgerOpen)
 import Views.BurgerMenu exposing (burgerMenu)
 import Views.DropDownMenu exposing (dropDownMenu)
+import Views.Graphs exposing (viewGraphs)
+import Views.Statistics exposing (viewStatistics)
 import Views.ViewWeek exposing (insertWeekView)
 import Views.ViewYear exposing (insertYearView)
 import Views.ViewYears exposing (insertYearsView)
@@ -42,6 +45,15 @@ body model =
 
         Week year week ->
             insertWeekView model year week
+
+        Statistics ->
+            viewStatistics model
+
+        Graphs ->
+            viewGraphs model
+
+        About ->
+            viewAbout model
 
         Debug ->
             div [] [ text "again, something wrong goin' on" ]

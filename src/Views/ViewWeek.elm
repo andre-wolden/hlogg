@@ -19,7 +19,7 @@ insertWeekView model year week =
 insertWeekHeader : Int -> Int -> Html Msg
 insertWeekHeader year week =
     div [ class "weekHeader" ]
-        [ button [ class "backArrow", onClick (GoToYear year) ] [ i [ class "fas fa-angle-left" ] [] ]
+        [ div [ class "backArrow", onClick (GoToYear year) ] [ i [ class "fas fa-angle-left" ] [] ]
         , div [ class "weekTitle" ] [ text (Debug.toString year ++ ", Week " ++ Debug.toString week) ]
         ]
 

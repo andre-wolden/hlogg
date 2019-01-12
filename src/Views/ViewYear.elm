@@ -13,7 +13,7 @@ insertYearView : Model -> Int -> Html Msg
 insertYearView model year =
     div [ class "weeks" ]
         [ div [ class "yearHeader" ]
-            [ button [ class "backArrow", onClick GoToYears ] [ i [ class "fas fa-angle-left" ] [] ]
+            [ div [ class "backArrow", onClick GoToYears ] [ i [ class "fas fa-angle-left" ] [] ]
             , yearTitle model.page
             ]
         , div [ class "yearBody" ] (List.map (insertWeekSquare model year) (listOfWeekNumbersInYear model.dates year))
@@ -32,7 +32,7 @@ yearTitle page =
 
 insertWeekSquare : Model -> Int -> Int -> Html Msg
 insertWeekSquare model year week =
-    div [ class "weekSquare" ] [ button [ onClick (GoToWeek year week) ] [ text (Debug.toString week) ] ]
+    div [ class "weekSquare" ] [ div [ onClick (GoToWeek year week) ] [ text (Debug.toString week) ] ]
 
 
 listOfWeekNumbersInYear : Maybe Dates -> Int -> List Int

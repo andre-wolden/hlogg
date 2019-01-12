@@ -60,13 +60,13 @@ header {
     background-color: black;
     overflow: hidden;
 
-    &.open {
-      height: 200px;
+    &.dropDownOpen {
+      height: 250px;
       transition-property: height;
       transition-duration: 0.5s;
     }
 
-    &.closed {
+    &.dropDownClosed {
       height: 0;
       transition-property: height;
       transition-duration: 0.5s;
