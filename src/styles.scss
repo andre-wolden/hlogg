@@ -164,6 +164,8 @@ header {
 .week {
   font-size: 32px;
   .weekHeader {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     vertical-align: middle;
     align-items: center;
@@ -182,10 +184,11 @@ header {
   font-size: 16px;
   text-align: left;
   font-family: sans-serif;
+  padding-left: 2rem;
 }
 
 .day {
-
+  margin-bottom: 2rem;
 }
 
 
@@ -256,22 +259,38 @@ header {
   background-color: grey;
 }
 
-.innhold_dag {
-  margin-left: 1rem;
-}
-
 .recordRow {
   margin-left: 2rem;
+  margin-top: 8px;
 }
 
 .addRecordButton {
   border: 1px solid grey;
+  margin-left: 2rem;
 }
 
 .open {
-  display: block;
+  margin-left: 3rem;
+  height: 220px;
+  transition-property: height;
+  transition-duration: 0.5s;
+  overflow: hidden;
 }
 
 .closed {
-  display: none;
+  margin-left: 3rem;
+  height: 0;
+  transition-property: height;
+  transition-duration: 0.5s;
+    overflow: hidden;
 }
+
+.addRecordBlock {
+  margin-top: 8px;
+}
+
+.activityRowInNewList {
+  margin-top: 8px;
+}
+
+// END

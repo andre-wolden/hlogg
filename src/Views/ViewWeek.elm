@@ -43,9 +43,9 @@ insertListOfDays model year week =
 
 insertDaySection : Model -> List Record -> Date -> Html Msg
 insertDaySection model listOfRecords date =
-    div [] <|
-        List.append [ text date.dayOfWeek, insertNewRecordSection model date ] <|
-            List.map (renderRecordRow date) listOfRecords
+    div [ class "day" ] <|
+        List.append [ text date.dayOfWeek ] <|
+            List.append (List.map (renderRecordRow date) listOfRecords) [ insertNewRecordSection model date ]
 
 
 renderRecordRow : Date -> Record -> Html Msg
@@ -127,7 +127,7 @@ insertNewRecordSection model date =
 
 activityToHtml : Date -> Activity -> Html Msg
 activityToHtml date activity =
-    div [ onClick (Messages.NewRecord activity date) ] [ text activity.activityDescription ]
+    div [ class "activityRowInNewList", onClick (Messages.NewRecord activity date) ] [ text activity.activityDescription ]
 
 
 
