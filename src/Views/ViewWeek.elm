@@ -1,6 +1,6 @@
 module Views.ViewWeek exposing (insertWeekView)
 
-import Html exposing (Html, br, button, div, i, img, li, p, text, ul)
+import Html exposing (Html, br, button, div, i, img, li, p, span, text, ul)
 import Html.Attributes exposing (class, href, src)
 import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
@@ -51,7 +51,11 @@ insertDaySection model listOfRecords date =
 renderRecordRow : Date -> Record -> Html Msg
 renderRecordRow date record =
     if record.date == date.localDate then
-        div [ class "recordRow" ] [ text record.activity.activityDescription ]
+        div [ class "recordRow" ]
+            [ span [] [ text record.activity.activityDescription ]
+            , span [] [ text "   " ]
+            , button [ class "addRecordButton", onClick (DeleteRecord record.id) ] [ text "x" ]
+            ]
 
     else
         div [] []

@@ -74,6 +74,7 @@ type Page
     | Graphs
     | About
     | Debug
+    | Loading
 
 
 type BurgerStatus

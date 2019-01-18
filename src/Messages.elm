@@ -3,6 +3,7 @@ module Messages exposing (Metadata, Msg(..))
 import Http
 import Json.Decode as Decode
 import Models.Types exposing (Activities, Activity, Date, Now, Page, Record, Records)
+import Spinner
 
 
 type alias Metadata =

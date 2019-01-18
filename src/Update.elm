@@ -7,6 +7,7 @@ import Json.Decode as Decode
 import Messages exposing (..)
 import Models.Model exposing (Model)
 import Models.Types exposing (..)
+import Spinner
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -94,7 +95,7 @@ update message model =
 
         -- Get all dates
         Messages.GetDates (Ok listOfDates) ->
-            ( { model | dates = Just listOfDates }, Cmd.none )
+            ( { model | dates = Just listOfDates, page = thisWeek listOfDates }, Cmd.none )
 
         Messages.GetDates (Err error) ->
             ( { model | debugMessage = Debug.toString error }, Cmd.none )
@@ -128,6 +129,21 @@ update message model =
 
         Messages.GoToPage page ->
             ( { model | page = page, burgerStatus = Closed }, Cmd.none )
+
+
+thisWeek : List Date -> Page
+thisWeek listOfDates =
+    let
+        maybeLastDate =
+            List.reverse listOfDates
+                |> List.head
+    in
+    case maybeLastDate of
+        Nothing ->
+            Years
+
+        Just lastDate ->
+            Week lastDate.year lastDate.week
 
 
 

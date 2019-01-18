@@ -44,7 +44,7 @@ init flags =
       , now = Nothing
       , subModelAddRecordOnDate = initSubModelAddRecordOnDate
       , dates = Nothing
-      , page = Week 2018 48
+      , page = Loading
       , burgerStatus = Closed
       , dateToOpenListOfActivitiesFor = Nothing
       }

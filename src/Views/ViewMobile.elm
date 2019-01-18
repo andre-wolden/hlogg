@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
 import Models.Types exposing (Page(..))
+import Spinner
 import Views.About exposing (viewAbout)
 import Views.Burger exposing (burger, burgerOpen)
 import Views.BurgerMenu exposing (burgerMenu)
@@ -57,6 +58,9 @@ body model =
 
         Debug ->
             div [] [ text "again, something wrong goin' on" ]
+
+        Loading ->
+            div [] [ Spinner.view Spinner.defaultConfig Spinner.init ]
 
 
 insertDateToday : Model -> Html Msg

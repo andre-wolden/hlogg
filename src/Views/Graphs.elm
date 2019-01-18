@@ -10,4 +10,12 @@ import Models.Types exposing (Page(..))
 
 viewGraphs : Model -> Html Msg
 viewGraphs model =
-    div [] [ text "Graphs" ]
+    div []
+        [ text "Graphs"
+        , viewPieChart model
+        ]
+
+
+viewPieChart : Model -> Html Msg
+viewPieChart model =
+    div [] [ text "Pie Chart" ]

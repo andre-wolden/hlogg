@@ -2,6 +2,7 @@ module Models.Model exposing (Model)
 
 import Models.SubModelAddRecordOnDate exposing (SubModelAddRecordOnDate)
 import Models.Types exposing (..)
+import Spinner
 
 
 type alias Model =
