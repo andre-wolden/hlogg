@@ -16,6 +16,7 @@ module Models.Types exposing
 type AddRecordBlockState
     = PlusSign
     | ListOfActivities
+    | Loader
 
 
 type alias Records =

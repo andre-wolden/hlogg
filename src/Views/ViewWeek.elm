@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Models.Model exposing (Model)
 import Models.Types exposing (Activity, AddRecordBlockState(..), Date, Page(..), Record, Records)
+import Spinner
 
 
 insertWeekView : Model -> Int -> Int -> Html Msg
@@ -124,9 +125,22 @@ insertNewRecordSection model date =
                 "closed"
     in
     div [ class "addRecordBlock" ]
-        [ button [ class "addRecordButton", onClick (ToggleActivityList date) ] [ text "+" ]
+        [ insertButtonOrLoader model date
         , div [ class className ] (List.map (activityToHtml date) model.activities)
         ]
+
+
+insertButtonOrLoader : Model -> Date -> Html Msg
+insertButtonOrLoader model date =
+    case model.addRecordBlockState of
+        Loader ->
+            div [] [ Spinner.view Spinner.defaultConfig Spinner.init ]
+
+        PlusSign ->
+            button [ class "addRecordButton", onClick (ToggleActivityList date) ] [ text "+" ]
+
+        ListOfActivities ->
+            button [ class "addRecordButton", onClick (ToggleActivityList date) ] [ text "x" ]
 
 
 activityToHtml : Date -> Activity -> Html Msg

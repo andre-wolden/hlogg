@@ -52,10 +52,10 @@ update message model =
 
         -- More http stuff
         Messages.RecordAdded (Ok record) ->
-            ( { model | records = (::) record model.records }, Cmd.none )
+            ( { model | records = (::) record model.records, addRecordBlockState = PlusSign }, Cmd.none )
 
         Messages.RecordAdded (Err error) ->
-            ( { model | debugMessage = "posting new record failed with error message: " ++ Debug.toString error }, Cmd.none )
+            ( { model | debugMessage = "posting new record failed with error message: " ++ Debug.toString error, addRecordBlockState = PlusSign }, Cmd.none )
 
         Messages.RecordDeleted (Ok success) ->
             ( model, Commands.getRecords )
@@ -124,8 +124,11 @@ update message model =
                 ListOfActivities ->
                     ( { model | addRecordBlockState = PlusSign }, Cmd.none )
 
+                Loader ->
+                    ( model, Cmd.none )
+
         Messages.NewRecord activity date ->
-            ( model, Commands.saveNewRecordOnDate activity.activityId date.localDate )
+            ( { model | addRecordBlockState = Loader }, Commands.saveNewRecordOnDate activity.activityId date.localDate )
 
         Messages.GoToPage page ->
             ( { model | page = page, burgerStatus = Closed }, Cmd.none )

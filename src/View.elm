@@ -72,6 +72,9 @@ addRecordBlock addRecordBlockState activities =
                 , button [ onClick Messages.CollapseAddRecordList ] [ text "x" ]
                 ]
 
+        Loader ->
+            div [] [ text "loading..." ]
+
 
 addRecordBlockActivityElement : Activity -> Html Msg
 addRecordBlockActivityElement activity =
